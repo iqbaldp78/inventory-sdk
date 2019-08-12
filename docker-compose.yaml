@@ -1,0 +1,24 @@
+version: "3.6"
+services:
+  grpc_inventory:
+    container_name: grpc_inventory
+    build:
+      context: "."
+      dockerfile: "./grpc-inventory/Dockerfile"
+    volumes:
+      - "./grpc-inventory/salestock.db"
+    environment:
+      DB_PATH: "./grpc-inventory/salestock.db"
+  grpc_inventory_client:
+    container_name: grpc_inventory_client
+    build:
+      context: "."
+      dockerfile: "./grpc-inventory-client/Dockerfile"
+    depends_on:
+      - "grpc_inventory"
+    ports:
+      - "1234:8080"
+    environment:
+      TES_INVENTORY_SERVER: "grpc_inventory:8010"
+    links:
+      - grpc_inventory

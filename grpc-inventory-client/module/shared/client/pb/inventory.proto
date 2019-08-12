@@ -1,0 +1,109 @@
+syntax = "proto3";
+package pb;
+
+message OnhandQTY {
+    string sku = 1;
+    string itemname = 2;
+    int64 stock = 3;
+}
+
+message Inbound{
+    string poDate = 1;
+    string sku = 2;
+    int64 poLine = 3;
+    int64 qtyPo = 4;
+    int64 qtyReceive = 5;
+    float purchasePrice = 6;
+    float totalInboundPrice =7;
+    string kwitansiNum = 8;
+    string noted = 9;
+    string itemName = 10;
+}
+
+message Outbound{
+    string orderDate = 1;
+    string sku = 2;
+    string itemname = 3;
+    int64 qtyOut = 4;
+    float sellingPrice = 5;
+    float totalOutboundPrice = 6;
+    string noted = 7;
+}
+
+message ReportValueHeader{
+    int64 countSku = 1;
+    int64 sumStock = 2;
+    float totalValue = 3;
+    string printDate = 4;
+    repeated ReportValueLines ReportValueLines = 5;
+}
+
+message ReportValueLines{
+    string sku = 1;
+    string itemname = 2;
+    int64 qtyTotalInv = 3;
+    float avgPruchasePrice = 4;
+    float totalPurchasePrice = 5;
+}
+
+message ReportSalesHeader{
+    string printDate = 1;
+    string paramDate = 2;
+    float totalOmset = 3;
+    float totalLabaGross = 4;
+    int64 totalPenjualan = 5;
+    int64 totalBarang = 6;
+    repeated ReportSalesLines ReportSalesLines = 7;
+}
+
+message ReportSalesLines{
+    string orderNum = 1;
+    string orderDate = 2;
+    string sku = 3;
+    string itemName = 4;
+    int64 qtySo = 5;
+    float sellingPrice = 6;
+    float totalPrice = 7;
+    float purchasePrice = 8;
+    float laba = 9;
+}
+
+message Empty {}
+
+message ResOnhandQTY {
+    int64 total = 1;
+    repeated OnhandQTY data = 2;
+}
+
+message ResInbounds{
+    int64 total = 1;
+    repeated Inbound data = 2;
+}
+
+message ResOutbounds{
+    int64 total = 1;
+    repeated Outbound data = 2;
+}
+
+message ResReportValue{
+    int64 total = 1;
+    repeated ReportValueHeader data = 2;
+}
+
+message ResReportSalesHeader{
+    int64 total = 1;
+    repeated ReportSalesHeader data = 2;
+}
+
+message ParamDate {
+    string dateFrom=1;
+    string dateTo=2;
+}
+
+service InventoryService {
+    rpc GetOnhandQTY(Empty) returns (ResOnhandQTY) {}
+    rpc GetInbounds(Empty) returns (ResInbounds) {}
+    rpc GetOutbounds(Empty) returns (ResOutbounds) {}
+    rpc GetReportValue(Empty) returns (ResReportValue) {}
+    rpc GetReportSales(ParamDate) returns (ResReportSalesHeader) {}
+}

@@ -1,0 +1,4 @@
+{
+    "SERVER_PORT": 8010,
+    "DB_PATH": "salestock.db"
+}
