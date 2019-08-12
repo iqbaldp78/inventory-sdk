@@ -15,7 +15,7 @@
 
 Class Diagram
 
-![Class Diagram](technical-assesment-inventory/ClassDiagram.png?raw=true)
+![Class Diagram](ClassDiagram.PNG)
 
 Technical assesment menggunakan gRPC (protobuff) karena asumsinya data yang ditransfer banyak, jika menggunakan HTTP 1 , akan lama di proses endcoding JSON.
 
