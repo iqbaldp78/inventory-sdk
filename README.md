@@ -15,7 +15,7 @@
 
 Class Diagram
 
-![Class Diagram](ClassDiagram.png)
+![Class Diagram](./ClassDiagram.png?raw=true)
 
 Technical assesment menggunakan gRPC (protobuff) karena asumsinya data yang ditransfer banyak, jika menggunakan HTTP 1 , akan lama di proses endcoding JSON.
 
@@ -25,10 +25,14 @@ Repo ini terdiri dari 2 service :
 
 ## How to trial 
 
+- clone
+```bash
+git clone https://github.com/iqbaldp78/technical-assesment-inventory.git
+```
 - start docker
 
 ```shell
-cd salestock-tech
+cd technical-assesment-inventory
 
 docker-compose -f "docker-compose.yaml" up -d --build
 ```
